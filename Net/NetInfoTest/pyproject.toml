@@ -1,0 +1,31 @@
+[project]
+name = "netinfotest"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "NekoGit",email = "2949324841@qq.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "netifaces (>=0.11.0,<0.12.0)"
+]
+
+[tool.poetry]
+packages = [
+        {include = "netinfotest", from = "src"},
+        {include = "info", from = "src"}
+    ]
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+info = "info:main"
