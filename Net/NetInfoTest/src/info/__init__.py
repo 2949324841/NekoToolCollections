@@ -1,3 +1,14 @@
+#poetry run info
+#---TCP 测试用---
+# 这个代码是一个简单的TCP服务器，用于获取本机的网络接口信息，并在客户端连接时返回这些信息。
+# 服务器会监听指定的端口，并在有客户端连接时，返回本机的网络接口信息和客户端的连接信息。
+# Windows可以使用telnet命令来连接服务器，Linux可以使用nc命令来连接服务器。
+#可以通过下方PORT参数来指定端口号
+#此代码是堵塞的，不能同时处理多个连接
+#可以通过ctrl+c来停止服务器(建议直接关掉终端)
+
+
+
 import socket
 import threading
 from time import sleep
@@ -128,6 +139,7 @@ def handle_client(conn, addr):
         response.append("="*40)
         response.append("")  # 空行表示结束
         print(response)
+        
         # 发送响应
         conn.sendall("\n".join(response).encode('utf-8'))
         
