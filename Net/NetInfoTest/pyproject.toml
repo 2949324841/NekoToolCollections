@@ -6,9 +6,11 @@ authors = [
     {name = "NekoGit",email = "2949324841@qq.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.14"
 dependencies = [
-    "netifaces (>=0.11.0,<0.12.0)"
+    "netifaces (>=0.11.0,<0.12.0)",
+    "psutil (>=7.0.0,<8.0.0)",
+    "pyside6 (>=6.9.0,<7.0.0)"
 ]
 
 [tool.poetry]
@@ -29,3 +31,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 info = "info:main"
+port1 = "port:display_example1"
+port = "port:main"
