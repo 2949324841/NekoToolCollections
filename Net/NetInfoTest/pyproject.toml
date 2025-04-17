@@ -31,5 +31,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 info = "info:main"
-port1 = "port:display_example1"
 port = "port:main"
