@@ -37,7 +37,10 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-
+      - name: Copy DoxyGen HTML to _site
+        run : |
+          mkdir -p _site/doxygen
+          cp -R DoxyFile/* _site/doxygen/
   # Deployment job
   deploy:
     environment:
