@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_e811cd22ba2fedfa35a05037d2a01824" xml:lang="en-US">
+<title>Net/NetInfoTest Directory Reference</title>
+<indexterm><primary>Net/NetInfoTest Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_9dc56c024580bc9e8a656c8f1e5673c3">src</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

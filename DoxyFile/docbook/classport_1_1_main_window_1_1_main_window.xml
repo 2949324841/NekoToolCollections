@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classport_1_1_main_window_1_1_main_window" xml:lang="en-US">
+<title>port.MainWindow.MainWindow Class Reference</title>
+<indexterm><primary>port.MainWindow.MainWindow</primary></indexterm>
+<para>Inheritance diagram for port.MainWindow.MainWindow:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classport_1_1_main_window_1_1_main_window.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1ad2280bfa9da15463a617e6369e873441">__init__</link> (self, parent=None)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a1407f4366a4104eacf1512c84910dfa0">initializePage</link> (self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a299f4e7599e96dfec094d668f3249502">initializeData</link> (self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a569f17a44f21969aabef3830772a4e98">initializeConnections</link> (self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1ade041a920d31ad57aa32474d009b3c18">appendRow</link> (self, dict[str, Any] rowData)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a5c99031e9c1347a2be2926408974b478">handleData</link> (self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1abd7dfc20bca615dd0e66eff34f2f373f">searchData</link> (self)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1aea3204db1bec0879c4505c370c768e98">rootLayout</link> = QVBoxLayout(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a2a26ca70011bb9079996c0c8158c1b2e">searchLayout</link> = QHBoxLayout(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1ad1ccb09f9c9831c724d68925e15ad455">searchCombo</link> = QComboBox(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a67ad60d034165f2dc48261d1c6b5716f">searchLineEdit</link> = QLineEdit(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a5350c5bbebf9e98ffbc905c76935bd91">searchButton</link> = QPushButton(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a05ebc47db2db962f10dca4329921561a">tableView</link> = QTableView(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1ad48d5ba3295024b312207385efecf614">bottomLayout</link> = QHBoxLayout(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a66d705a576d4bc1d9a5ac70dfb15104c">bottomStartSearchButton</link> = QPushButton(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1aed84053d87094454fece63c555c5c3e3">bottomStopSearchButton</link> = QPushButton(self)</para>
+</listitem>
+            <listitem><para><link linkend="_classport_1_1_main_window_1_1_main_window_1a61f9c4341d9f05e53555e80617b52e5d">model</link> = QStandardItemModel()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__main_window_8py_source_1l00009">9</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1ad2280bfa9da15463a617e6369e873441"/><section>
+    <title>__init__()</title>
+<indexterm><primary>__init__</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>__init__</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.__init__ ( self,  parent = <computeroutput>None</computeroutput>
+)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00010">10</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1ade041a920d31ad57aa32474d009b3c18"/><section>
+    <title>appendRow()</title>
+<indexterm><primary>appendRow</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>appendRow</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.appendRow ( self, dict[str,Any] rowData)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00074">74</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a5c99031e9c1347a2be2926408974b478"/><section>
+    <title>handleData()</title>
+<indexterm><primary>handleData</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>handleData</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.handleData ( self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00089">89</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a569f17a44f21969aabef3830772a4e98"/><section>
+    <title>initializeConnections()</title>
+<indexterm><primary>initializeConnections</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>initializeConnections</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.initializeConnections ( self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00070">70</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a299f4e7599e96dfec094d668f3249502"/><section>
+    <title>initializeData()</title>
+<indexterm><primary>initializeData</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>initializeData</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.initializeData ( self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00040">40</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a1407f4366a4104eacf1512c84910dfa0"/><section>
+    <title>initializePage()</title>
+<indexterm><primary>initializePage</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>initializePage</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.initializePage ( self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00016">16</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1abd7dfc20bca615dd0e66eff34f2f373f"/><section>
+    <title>searchData()</title>
+<indexterm><primary>searchData</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>searchData</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.searchData ( self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00098">98</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1ad48d5ba3295024b312207385efecf614"/><section>
+    <title>bottomLayout</title>
+<indexterm><primary>bottomLayout</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>bottomLayout</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.bottomLayout = QHBoxLayout(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00033">33</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a66d705a576d4bc1d9a5ac70dfb15104c"/><section>
+    <title>bottomStartSearchButton</title>
+<indexterm><primary>bottomStartSearchButton</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>bottomStartSearchButton</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.bottomStartSearchButton = QPushButton(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00034">34</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1aed84053d87094454fece63c555c5c3e3"/><section>
+    <title>bottomStopSearchButton</title>
+<indexterm><primary>bottomStopSearchButton</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>bottomStopSearchButton</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.bottomStopSearchButton = QPushButton(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00035">35</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a61f9c4341d9f05e53555e80617b52e5d"/><section>
+    <title>model</title>
+<indexterm><primary>model</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>model</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.model = QStandardItemModel()</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00055">55</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1aea3204db1bec0879c4505c370c768e98"/><section>
+    <title>rootLayout</title>
+<indexterm><primary>rootLayout</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>rootLayout</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.rootLayout = QVBoxLayout(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00018">18</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a5350c5bbebf9e98ffbc905c76935bd91"/><section>
+    <title>searchButton</title>
+<indexterm><primary>searchButton</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>searchButton</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.searchButton = QPushButton(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00023">23</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1ad1ccb09f9c9831c724d68925e15ad455"/><section>
+    <title>searchCombo</title>
+<indexterm><primary>searchCombo</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>searchCombo</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.searchCombo = QComboBox(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00021">21</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a2a26ca70011bb9079996c0c8158c1b2e"/><section>
+    <title>searchLayout</title>
+<indexterm><primary>searchLayout</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>searchLayout</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.searchLayout = QHBoxLayout(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00020">20</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a67ad60d034165f2dc48261d1c6b5716f"/><section>
+    <title>searchLineEdit</title>
+<indexterm><primary>searchLineEdit</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>searchLineEdit</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.searchLineEdit = QLineEdit(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00022">22</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<anchor xml:id="_classport_1_1_main_window_1_1_main_window_1a05ebc47db2db962f10dca4329921561a"/><section>
+    <title>tableView</title>
+<indexterm><primary>tableView</primary><secondary>port.MainWindow.MainWindow</secondary></indexterm>
+<indexterm><primary>port.MainWindow.MainWindow</primary><secondary>tableView</secondary></indexterm>
+<para><computeroutput>port.MainWindow.MainWindow.tableView = QTableView(self)</computeroutput></para><para>
+Definition at line <link linkend="__main_window_8py_source_1l00030">30</link> of file <link linkend="__main_window_8py_source">MainWindow.py</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+Net/NetInfoTest/src/port/<link linkend="__main_window_8py">MainWindow.py</link></section>
+</section>

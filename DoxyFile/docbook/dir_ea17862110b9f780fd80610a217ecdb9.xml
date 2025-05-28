@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_ea17862110b9f780fd80610a217ecdb9" xml:lang="en-US">
+<title>Net/NetInfoTest/src/netinfotest Directory Reference</title>
+<indexterm><primary>Net/NetInfoTest/src/netinfotest Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_netinfotest_2____init_____8py">__init__.py</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

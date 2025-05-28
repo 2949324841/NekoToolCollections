@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_ea17862110b9f780fd80610a217ecdb9" kind="dir">
+    <compoundname>Net/NetInfoTest/src/netinfotest</compoundname>
+    <innerfile refid="netinfotest_2____init_____8py">__init__.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Net/NetInfoTest/src/netinfotest/"/>
+  </compounddef>
+</doxygen>

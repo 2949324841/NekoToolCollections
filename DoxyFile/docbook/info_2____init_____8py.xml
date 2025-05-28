@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_info_2____init_____8py" xml:lang="en-US">
+<title>Net/NetInfoTest/src/info/__init__.py File Reference</title>
+<indexterm><primary>Net/NetInfoTest/src/info/__init__.py</primary></indexterm>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespaceinfo">info</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespaceinfo_1a4d27cee512465a82189df9f1f879dcdd">info.get_network_info</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_namespaceinfo_1a1d5b41b877e75ac738eb6f6f65b0a4b4">info.format_network_info</link> (info)</para>
+</listitem>
+            <listitem><para><link linkend="_namespaceinfo_1ac557735ba5fce3b55972789b9411e4fa">info.handle_client</link> (conn, addr)</para>
+</listitem>
+            <listitem><para><link linkend="_namespaceinfo_1acc97091842bdb977661bd4a0e85bc4cc">info.start_server</link> (port)</para>
+</listitem>
+            <listitem><para><link linkend="_namespaceinfo_1ac8c97f98088f4f709f77433d16180c9a">info.main</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_namespaceinfo_1a04a59b3a0535e35e0a7df173608274c1">info.PORT</link> = 8084</para>
+</listitem>
+            <listitem><para><link linkend="_namespaceinfo_1a410b4e495c1c789541f880c3725e9b02">info.server_info</link> = <link linkend="_namespaceinfo_1a1d5b41b877e75ac738eb6f6f65b0a4b4">format_network_info</link>(<link linkend="_namespaceinfo_1a4d27cee512465a82189df9f1f879dcdd">get_network_info</link>())</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

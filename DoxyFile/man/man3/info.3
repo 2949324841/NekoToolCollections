@@ -1,0 +1,102 @@
+.TH "info" 3 "NekoCollections" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+info
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBget_network_info\fP ()"
+.br
+.ti -1c
+.RI "\fBformat_network_info\fP (info)"
+.br
+.ti -1c
+.RI "\fBhandle_client\fP (conn, addr)"
+.br
+.ti -1c
+.RI "\fBstart_server\fP (port)"
+.br
+.ti -1c
+.RI "\fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBPORT\fP = 8084"
+.br
+.ti -1c
+.RI "\fBserver_info\fP = \fBformat_network_info\fP(\fBget_network_info\fP())"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "info\&.format_network_info ( info)"
+
+.PP
+.nf
+格式化网络信息为可读字符串
+.fi
+.PP
+ 
+.PP
+Definition at line \fB84\fP of file \fB__init__\&.py\fP\&.
+.SS "info\&.get_network_info ()"
+
+.PP
+.nf
+获取本机的网络接口信息
+.fi
+.PP
+ 
+.PP
+Definition at line \fB23\fP of file \fB__init__\&.py\fP\&.
+.SS "info\&.handle_client ( conn,  addr)"
+
+.PP
+.nf
+处理客户端连接
+.fi
+.PP
+ 
+.PP
+Definition at line \fB115\fP of file \fB__init__\&.py\fP\&.
+.SS "info\&.main ()"
+
+.PP
+.nf
+主函数入口
+.fi
+.PP
+ 
+.PP
+Definition at line \fB185\fP of file \fB__init__\&.py\fP\&.
+.SS "info\&.start_server ( port)"
+
+.PP
+.nf
+启动TCP服务器
+.fi
+.PP
+ 
+.PP
+Definition at line \fB152\fP of file \fB__init__\&.py\fP\&.
+.SH "Variable Documentation"
+.PP 
+.SS "int info\&.PORT = 8084"
+
+.PP
+Definition at line \fB19\fP of file \fB__init__\&.py\fP\&.
+.SS "info\&.server_info = \fBformat_network_info\fP(\fBget_network_info\fP())"
+
+.PP
+Definition at line \fB113\fP of file \fB__init__\&.py\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for NekoCollections from the source code\&.

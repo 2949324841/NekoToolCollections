@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__port_scanner_8py_source" xml:lang="en-US">
+<title>PortScanner.py</title>
+<indexterm><primary>Net/NetInfoTest/src/port/PortScanner.py</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__port_scanner_8py_source_1l00001"/><link linkend="_namespaceport_1_1_port_scanner">00001</link> <emphasis role="keyword">import</emphasis>&#32;psutil
+<anchor xml:id="__port_scanner_8py_source_1l00002"/>00002 
+<anchor xml:id="__port_scanner_8py_source_1l00003"/><link linkend="_classport_1_1_port_scanner_1_1_port_scanner">00003</link> <emphasis role="keyword">class&#32;</emphasis><link linkend="_classport_1_1_port_scanner_1_1_port_scanner">PortScanner</link>:
+<anchor xml:id="__port_scanner_8py_source_1l00004"/>00004 &#32;&#32;&#32;&#32;<emphasis role="preprocessor">@staticmethod</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00005"/><link linkend="_classport_1_1_port_scanner_1_1_port_scanner_1ac0dadcc5e2bb6a92cf43cc20341a8e06">00005</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis><link linkend="_classport_1_1_port_scanner_1_1_port_scanner_1ac0dadcc5e2bb6a92cf43cc20341a8e06">get_all_ports</link>():
+<anchor xml:id="__port_scanner_8py_source_1l00006"/>00006 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;connections&#32;=&#32;psutil.net_connections(kind=<emphasis role="stringliteral">&apos;inet&apos;</emphasis>)&#32;&#32;<emphasis role="comment">#&#32;获取所有网络连接</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00007"/>00007 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;port_data&#32;=&#32;[]
+<anchor xml:id="__port_scanner_8py_source_1l00008"/>00008 
+<anchor xml:id="__port_scanner_8py_source_1l00009"/>00009 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;conn&#32;<emphasis role="keywordflow">in</emphasis>&#32;connections:
+<anchor xml:id="__port_scanner_8py_source_1l00010"/>00010 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.status&#32;==&#32;psutil.CONN_LISTEN:
+<anchor xml:id="__port_scanner_8py_source_1l00011"/>00011 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;state&#32;=&#32;<emphasis role="stringliteral">&quot;LISTEN&quot;</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00012"/>00012 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>:
+<anchor xml:id="__port_scanner_8py_source_1l00013"/>00013 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;state&#32;=&#32;conn.status
+<anchor xml:id="__port_scanner_8py_source_1l00014"/>00014 
+<anchor xml:id="__port_scanner_8py_source_1l00015"/>00015 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;port_data.append({
+<anchor xml:id="__port_scanner_8py_source_1l00016"/>00016 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;protocol&quot;</emphasis>:&#32;<emphasis role="stringliteral">&quot;TCP&quot;</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.type&#32;==&#32;1&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="stringliteral">&quot;UDP&quot;</emphasis>,
+<anchor xml:id="__port_scanner_8py_source_1l00017"/>00017 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;local_ip&quot;</emphasis>:&#32;conn.laddr.ip&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.laddr&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,
+<anchor xml:id="__port_scanner_8py_source_1l00018"/>00018 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;local_port&quot;</emphasis>:&#32;conn.laddr.port&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.laddr&#32;<emphasis role="keywordflow">else</emphasis>&#32;0,
+<anchor xml:id="__port_scanner_8py_source_1l00019"/>00019 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;remote_ip&quot;</emphasis>:&#32;conn.raddr.ip&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.raddr&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>,
+<anchor xml:id="__port_scanner_8py_source_1l00020"/>00020 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;remote_port&quot;</emphasis>:&#32;conn.raddr.port&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.raddr&#32;<emphasis role="keywordflow">else</emphasis>&#32;0,
+<anchor xml:id="__port_scanner_8py_source_1l00021"/>00021 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;state&quot;</emphasis>:&#32;state,
+<anchor xml:id="__port_scanner_8py_source_1l00022"/>00022 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;pid&quot;</emphasis>:&#32;conn.pid,
+<anchor xml:id="__port_scanner_8py_source_1l00023"/>00023 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;process_name&quot;</emphasis>:&#32;psutil.Process(conn.pid).name()&#32;<emphasis role="keywordflow">if</emphasis>&#32;conn.pid&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00024"/>00024 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;})
+<anchor xml:id="__port_scanner_8py_source_1l00025"/>00025 
+<anchor xml:id="__port_scanner_8py_source_1l00026"/>00026 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;port_data
+<anchor xml:id="__port_scanner_8py_source_1l00027"/>00027 
+<anchor xml:id="__port_scanner_8py_source_1l00028"/>00028 <emphasis role="comment">#&#32;示例输出</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00029"/><link linkend="_namespaceport_1_1_port_scanner_1ad4b69ac28f8573b577ba58bb88f9ed2a">00029</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceport_1_1_port_scanner_1ad4b69ac28f8573b577ba58bb88f9ed2a">display_example</link>():
+<anchor xml:id="__port_scanner_8py_source_1l00030"/>00030 &#32;&#32;&#32;&#32;ports&#32;=&#32;PortScanner.get_all_ports()
+<anchor xml:id="__port_scanner_8py_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;port&#32;<emphasis role="keywordflow">in</emphasis>&#32;ports[:5]:&#32;&#32;<emphasis role="comment">#&#32;打印前5条记录</emphasis>
+<anchor xml:id="__port_scanner_8py_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(port)
+</programlisting></section>

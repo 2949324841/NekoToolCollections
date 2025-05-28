@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_port_2____init_____8py" xml:lang="en-US">
+<title>Net/NetInfoTest/src/port/__init__.py File Reference</title>
+<indexterm><primary>Net/NetInfoTest/src/port/__init__.py</primary></indexterm>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para>namespace <link linkend="_namespaceport">port</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_namespaceport_1a92a258ef3b630660998c6e1944a2da3d">port.main</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

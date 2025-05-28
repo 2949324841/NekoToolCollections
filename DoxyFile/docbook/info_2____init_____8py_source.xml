@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_info_2____init_____8py_source" xml:lang="en-US">
+<title>__init__.py</title>
+<indexterm><primary>Net/NetInfoTest/src/info/__init__.py</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="_info_2____init_____8py_source_1l00001"/><link linkend="_namespaceinfo">00001</link> <emphasis role="comment">#poetry&#32;run&#32;info</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00002"/>00002 <emphasis role="comment">#---TCP&#32;测试用---</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00003"/>00003 <emphasis role="comment">#&#32;这个代码是一个简单的TCP服务器，用于获取本机的网络接口信息，并在客户端连接时返回这些信息。</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00004"/>00004 <emphasis role="comment">#&#32;服务器会监听指定的端口，并在有客户端连接时，返回本机的网络接口信息和客户端的连接信息。</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00005"/>00005 <emphasis role="comment">#&#32;Windows可以使用telnet命令来连接服务器，Linux可以使用nc命令来连接服务器。</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00006"/>00006 <emphasis role="comment">#可以通过下方PORT参数来指定端口号</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00007"/>00007 <emphasis role="comment">#此代码是堵塞的，不能同时处理多个连接</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00008"/>00008 <emphasis role="comment">#可以通过ctrl+c来停止服务器(建议直接关掉终端)</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00009"/>00009 
+<anchor xml:id="_info_2____init_____8py_source_1l00010"/>00010 
+<anchor xml:id="_info_2____init_____8py_source_1l00011"/>00011 
+<anchor xml:id="_info_2____init_____8py_source_1l00012"/>00012 <emphasis role="keyword">import</emphasis>&#32;socket
+<anchor xml:id="_info_2____init_____8py_source_1l00013"/>00013 <emphasis role="keyword">import</emphasis>&#32;threading
+<anchor xml:id="_info_2____init_____8py_source_1l00014"/>00014 <emphasis role="keyword">from</emphasis>&#32;time&#32;<emphasis role="keyword">import</emphasis>&#32;sleep
+<anchor xml:id="_info_2____init_____8py_source_1l00015"/>00015 <emphasis role="keyword">import</emphasis>&#32;netifaces
+<anchor xml:id="_info_2____init_____8py_source_1l00016"/>00016 <emphasis role="keyword">import</emphasis>&#32;ipaddress
+<anchor xml:id="_info_2____init_____8py_source_1l00017"/>00017 <emphasis role="keyword">from</emphasis>&#32;datetime&#32;<emphasis role="keyword">import</emphasis>&#32;datetime
+<anchor xml:id="_info_2____init_____8py_source_1l00018"/>00018 
+<anchor xml:id="_info_2____init_____8py_source_1l00019"/><link linkend="_namespaceinfo_1a04a59b3a0535e35e0a7df173608274c1">00019</link> PORT&#32;=&#32;8084&#32;<emphasis role="comment">#&#32;默认端口号</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00020"/>00020 
+<anchor xml:id="_info_2____init_____8py_source_1l00021"/>00021 
+<anchor xml:id="_info_2____init_____8py_source_1l00022"/>00022 
+<anchor xml:id="_info_2____init_____8py_source_1l00023"/><link linkend="_namespaceinfo_1a4d27cee512465a82189df9f1f879dcdd">00023</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceinfo_1a4d27cee512465a82189df9f1f879dcdd">get_network_info</link>():
+<anchor xml:id="_info_2____init_____8py_source_1l00024"/>00024 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&quot;&quot;获取本机的网络接口信息&quot;&quot;&quot;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00025"/>00025 &#32;&#32;&#32;&#32;interfaces&#32;=&#32;netifaces.interfaces()
+<anchor xml:id="_info_2____init_____8py_source_1l00026"/>00026 &#32;&#32;&#32;&#32;info&#32;=&#32;{
+<anchor xml:id="_info_2____init_____8py_source_1l00027"/>00027 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;hostname&apos;</emphasis>:&#32;socket.gethostname(),
+<anchor xml:id="_info_2____init_____8py_source_1l00028"/>00028 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;interfaces&apos;</emphasis>:&#32;[]
+<anchor xml:id="_info_2____init_____8py_source_1l00029"/>00029 &#32;&#32;&#32;&#32;}
+<anchor xml:id="_info_2____init_____8py_source_1l00030"/>00030 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;interface&#32;<emphasis role="keywordflow">in</emphasis>&#32;interfaces:
+<anchor xml:id="_info_2____init_____8py_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ifaddrs&#32;=&#32;netifaces.ifaddresses(interface)
+<anchor xml:id="_info_2____init_____8py_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;interface_info&#32;=&#32;{
+<anchor xml:id="_info_2____init_____8py_source_1l00034"/>00034 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;name&apos;</emphasis>:&#32;interface,
+<anchor xml:id="_info_2____init_____8py_source_1l00035"/>00035 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ipv4&apos;</emphasis>:&#32;[],
+<anchor xml:id="_info_2____init_____8py_source_1l00036"/>00036 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;ipv6&apos;</emphasis>:&#32;[],
+<anchor xml:id="_info_2____init_____8py_source_1l00037"/>00037 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;mac&apos;</emphasis>:&#32;<emphasis role="keywordtype">None</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00038"/>00038 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_info_2____init_____8py_source_1l00039"/>00039 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00040"/>00040 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;获取MAC地址</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00041"/>00041 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;netifaces.AF_LINK&#32;<emphasis role="keywordflow">in</emphasis>&#32;ifaddrs:
+<anchor xml:id="_info_2____init_____8py_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;interface_info[<emphasis role="stringliteral">&apos;mac&apos;</emphasis>]&#32;=&#32;ifaddrs[netifaces.AF_LINK][0][<emphasis role="stringliteral">&apos;addr&apos;</emphasis>]
+<anchor xml:id="_info_2____init_____8py_source_1l00043"/>00043 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;获取IPv4地址</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;netifaces.AF_INET&#32;<emphasis role="keywordflow">in</emphasis>&#32;ifaddrs:
+<anchor xml:id="_info_2____init_____8py_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;addr&#32;<emphasis role="keywordflow">in</emphasis>&#32;ifaddrs[netifaces.AF_INET]:
+<anchor xml:id="_info_2____init_____8py_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ip&#32;=&#32;addr[<emphasis role="stringliteral">&apos;addr&apos;</emphasis>]
+<anchor xml:id="_info_2____init_____8py_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;netmask&#32;=&#32;addr.get(<emphasis role="stringliteral">&apos;netmask&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00049"/>00049 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;broadcast&#32;=&#32;addr.get(<emphasis role="stringliteral">&apos;broadcast&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00051"/>00051 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;计算网络地址</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;network&#32;=&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;ip&#32;<emphasis role="keywordflow">and</emphasis>&#32;netmask:
+<anchor xml:id="_info_2____init_____8py_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;network&#32;=&#32;str(ipaddress.IPv4Network(f<emphasis role="stringliteral">&quot;{ip}/{netmask}&quot;</emphasis>,&#32;strict=<emphasis role="keyword">False</emphasis>))
+<anchor xml:id="_info_2____init_____8py_source_1l00056"/>00056 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">except</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00057"/>00057 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">pass</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;interface_info[<emphasis role="stringliteral">&apos;ipv4&apos;</emphasis>].append({
+<anchor xml:id="_info_2____init_____8py_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;address&apos;</emphasis>:&#32;ip,
+<anchor xml:id="_info_2____init_____8py_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;netmask&apos;</emphasis>:&#32;netmask,
+<anchor xml:id="_info_2____init_____8py_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;broadcast&apos;</emphasis>:&#32;broadcast,
+<anchor xml:id="_info_2____init_____8py_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;network&apos;</emphasis>:&#32;network
+<anchor xml:id="_info_2____init_____8py_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;})
+<anchor xml:id="_info_2____init_____8py_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;获取IPv6地址</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;netifaces.AF_INET6&#32;<emphasis role="keywordflow">in</emphasis>&#32;ifaddrs:
+<anchor xml:id="_info_2____init_____8py_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;addr&#32;<emphasis role="keywordflow">in</emphasis>&#32;ifaddrs[netifaces.AF_INET6]:
+<anchor xml:id="_info_2____init_____8py_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ip&#32;=&#32;addr[<emphasis role="stringliteral">&apos;addr&apos;</emphasis>]
+<anchor xml:id="_info_2____init_____8py_source_1l00070"/>00070 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;去掉IPv6的%scope部分</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;<emphasis role="stringliteral">&apos;%&apos;</emphasis>&#32;<emphasis role="keywordflow">in</emphasis>&#32;ip:
+<anchor xml:id="_info_2____init_____8py_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ip&#32;=&#32;ip.split(<emphasis role="stringliteral">&apos;%&apos;</emphasis>)[0]
+<anchor xml:id="_info_2____init_____8py_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;netmask&#32;=&#32;addr.get(<emphasis role="stringliteral">&apos;netmask&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;&apos;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00075"/>00075 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;interface_info[<emphasis role="stringliteral">&apos;ipv6&apos;</emphasis>].append({
+<anchor xml:id="_info_2____init_____8py_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;address&apos;</emphasis>:&#32;ip,
+<anchor xml:id="_info_2____init_____8py_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;netmask&apos;</emphasis>:&#32;netmask
+<anchor xml:id="_info_2____init_____8py_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;})
+<anchor xml:id="_info_2____init_____8py_source_1l00079"/>00079 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00080"/>00080 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;info[<emphasis role="stringliteral">&apos;interfaces&apos;</emphasis>].append(interface_info)
+<anchor xml:id="_info_2____init_____8py_source_1l00081"/>00081 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00082"/>00082 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;info
+<anchor xml:id="_info_2____init_____8py_source_1l00083"/>00083 
+<anchor xml:id="_info_2____init_____8py_source_1l00084"/><link linkend="_namespaceinfo_1a1d5b41b877e75ac738eb6f6f65b0a4b4">00084</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceinfo_1a1d5b41b877e75ac738eb6f6f65b0a4b4">format_network_info</link>(info):
+<anchor xml:id="_info_2____init_____8py_source_1l00085"/>00085 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&quot;&quot;格式化网络信息为可读字符串&quot;&quot;&quot;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00086"/>00086 &#32;&#32;&#32;&#32;lines&#32;=&#32;[]
+<anchor xml:id="_info_2____init_____8py_source_1l00087"/>00087 &#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;Hostname:&#32;{info[&apos;hostname&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00088"/>00088 &#32;&#32;&#32;&#32;lines.append(<emphasis role="stringliteral">&quot;\nNetwork&#32;Interfaces:&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00089"/>00089 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00090"/>00090 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;interface&#32;<emphasis role="keywordflow">in</emphasis>&#32;info[<emphasis role="stringliteral">&apos;interfaces&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;\nInterface:&#32;{interface[&apos;name&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;interface[<emphasis role="stringliteral">&apos;mac&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;MAC:&#32;{interface[&apos;mac&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;interface[<emphasis role="stringliteral">&apos;ipv4&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(<emphasis role="stringliteral">&quot;&#32;&#32;IPv4&#32;Addresses:&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00097"/>00097 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;addr&#32;<emphasis role="keywordflow">in</emphasis>&#32;interface[<emphasis role="stringliteral">&apos;ipv4&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Address:&#32;{addr[&apos;address&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00099"/>00099 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Netmask:&#32;{addr[&apos;netmask&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;addr[<emphasis role="stringliteral">&apos;broadcast&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Broadcast:&#32;{addr[&apos;broadcast&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;addr[<emphasis role="stringliteral">&apos;network&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00103"/>00103 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Network:&#32;{addr[&apos;network&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;interface[<emphasis role="stringliteral">&apos;ipv6&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(<emphasis role="stringliteral">&quot;&#32;&#32;IPv6&#32;Addresses:&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;addr&#32;<emphasis role="keywordflow">in</emphasis>&#32;interface[<emphasis role="stringliteral">&apos;ipv6&apos;</emphasis>]:
+<anchor xml:id="_info_2____init_____8py_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Address:&#32;{addr[&apos;address&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;lines.append(f<emphasis role="stringliteral">&quot;&#32;&#32;&#32;&#32;Netmask:&#32;{addr[&apos;netmask&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00110"/>00110 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00111"/>00111 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="stringliteral">&quot;\n&quot;</emphasis>.join(lines)
+<anchor xml:id="_info_2____init_____8py_source_1l00112"/>00112 
+<anchor xml:id="_info_2____init_____8py_source_1l00113"/><link linkend="_namespaceinfo_1a410b4e495c1c789541f880c3725e9b02">00113</link> server_info&#32;=&#32;<link linkend="_namespaceinfo_1a1d5b41b877e75ac738eb6f6f65b0a4b4">format_network_info</link>(<link linkend="_namespaceinfo_1a4d27cee512465a82189df9f1f879dcdd">get_network_info</link>())
+<anchor xml:id="_info_2____init_____8py_source_1l00114"/>00114 
+<anchor xml:id="_info_2____init_____8py_source_1l00115"/><link linkend="_namespaceinfo_1ac557735ba5fce3b55972789b9411e4fa">00115</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceinfo_1ac557735ba5fce3b55972789b9411e4fa">handle_client</link>(conn,&#32;addr):
+<anchor xml:id="_info_2____init_____8py_source_1l00116"/>00116 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&quot;&quot;处理客户端连接&quot;&quot;&quot;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00117"/>00117 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;获取客户端信息</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;client_info&#32;=&#32;{
+<anchor xml:id="_info_2____init_____8py_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;address&apos;</emphasis>:&#32;addr[0],
+<anchor xml:id="_info_2____init_____8py_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;port&apos;</emphasis>:&#32;addr[1],
+<anchor xml:id="_info_2____init_____8py_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;family&apos;</emphasis>:&#32;<emphasis role="stringliteral">&apos;IPv4&apos;</emphasis>&#32;<emphasis role="keywordflow">if</emphasis>&#32;<emphasis role="stringliteral">&apos;:&apos;</emphasis>&#32;<emphasis role="keywordflow">not</emphasis>&#32;<emphasis role="keywordflow">in</emphasis>&#32;addr[0]&#32;<emphasis role="keywordflow">else</emphasis>&#32;<emphasis role="stringliteral">&apos;IPv6&apos;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="_info_2____init_____8py_source_1l00124"/>00124 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00125"/>00125 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;获取服务器信息</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00126"/>00126 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#server_info&#32;=&#32;get_network_info()</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;准备响应数据</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00129"/>00129 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response&#32;=&#32;[]
+<anchor xml:id="_info_2____init_____8py_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(<emphasis role="stringliteral">&quot;=&quot;</emphasis>*40)
+<anchor xml:id="_info_2____init_____8py_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(f<emphasis role="stringliteral">&quot;Connection&#32;Time:&#32;{datetime.now().strftime(&apos;%Y-%m-%d&#32;%H:%M:%S&apos;)}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(<emphasis role="stringliteral">&quot;\nServer&#32;Network&#32;Information:&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(server_info)
+<anchor xml:id="_info_2____init_____8py_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(<emphasis role="stringliteral">&quot;\n\nClient&#32;Network&#32;Information:&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(f<emphasis role="stringliteral">&quot;Address:&#32;{client_info[&apos;address&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(f<emphasis role="stringliteral">&quot;Port:&#32;{client_info[&apos;port&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(f<emphasis role="stringliteral">&quot;IP&#32;Version:&#32;{client_info[&apos;family&apos;]}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(<emphasis role="stringliteral">&quot;=&quot;</emphasis>*40)
+<anchor xml:id="_info_2____init_____8py_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;response.append(<emphasis role="stringliteral">&quot;&quot;</emphasis>)&#32;&#32;<emphasis role="comment">#&#32;空行表示结束</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(response)
+<anchor xml:id="_info_2____init_____8py_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;发送响应</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;conn.sendall(<emphasis role="stringliteral">&quot;\n&quot;</emphasis>.join(response).encode(<emphasis role="stringliteral">&apos;utf-8&apos;</emphasis>))
+<anchor xml:id="_info_2____init_____8py_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00146"/>00146 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">except</emphasis>&#32;Exception&#32;<emphasis role="keyword">as</emphasis>&#32;e:
+<anchor xml:id="_info_2____init_____8py_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(f<emphasis role="stringliteral">&quot;Error&#32;handling&#32;client&#32;{addr}:&#32;{e}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00148"/>00148 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">finally</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;conn.close()
+<anchor xml:id="_info_2____init_____8py_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(f<emphasis role="stringliteral">&quot;Connection&#32;closed&#32;with&#32;{addr}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00151"/>00151 
+<anchor xml:id="_info_2____init_____8py_source_1l00152"/><link linkend="_namespaceinfo_1acc97091842bdb977661bd4a0e85bc4cc">00152</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceinfo_1acc97091842bdb977661bd4a0e85bc4cc">start_server</link>(port):
+<anchor xml:id="_info_2____init_____8py_source_1l00153"/>00153 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&quot;&quot;启动TCP服务器&quot;&quot;&quot;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00154"/>00154 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;创建IPv4和IPv6套接字</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00155"/>00155 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket&#32;=&#32;socket.socket(socket.AF_INET6,&#32;socket.SOCK_STREAM)
+<anchor xml:id="_info_2____init_____8py_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket.setsockopt(socket.IPPROTO_IPV6,&#32;socket.IPV6_V6ONLY,&#32;0)
+<anchor xml:id="_info_2____init_____8py_source_1l00158"/>00158 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(<emphasis role="stringliteral">&quot;Server&#32;will&#32;listen&#32;on&#32;both&#32;IPv4&#32;and&#32;IPv6&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00159"/>00159 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">except</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket&#32;=&#32;socket.socket(socket.AF_INET,&#32;socket.SOCK_STREAM)
+<anchor xml:id="_info_2____init_____8py_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(<emphasis role="stringliteral">&quot;Server&#32;will&#32;listen&#32;on&#32;IPv4&#32;only&#32;(IPv6&#32;not&#32;available)&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00162"/>00162 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00163"/>00163 &#32;&#32;&#32;&#32;server_socket.setsockopt(socket.SOL_SOCKET,&#32;socket.SO_REUSEADDR,&#32;1)
+<anchor xml:id="_info_2____init_____8py_source_1l00164"/>00164 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00165"/>00165 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket.bind((<emphasis role="stringliteral">&apos;&apos;</emphasis>,&#32;port))
+<anchor xml:id="_info_2____init_____8py_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket.listen(5)
+<anchor xml:id="_info_2____init_____8py_source_1l00168"/>00168 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(f<emphasis role="stringliteral">&quot;{server_info}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00169"/>00169 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(f<emphasis role="stringliteral">&quot;Server&#32;started&#32;on&#32;port&#32;{port}.&#32;Waiting&#32;for&#32;connections...&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00170"/>00170 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">while</emphasis>&#32;<emphasis role="keyword">True</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;conn,&#32;addr&#32;=&#32;server_socket.accept()
+<anchor xml:id="_info_2____init_____8py_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;print(f<emphasis role="stringliteral">&quot;\nNew&#32;connection&#32;from&#32;{addr}&quot;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;client_thread&#32;=&#32;threading.Thread(target=handle_client,&#32;args=(conn,&#32;addr))
+<anchor xml:id="_info_2____init_____8py_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;client_thread.start()
+<anchor xml:id="_info_2____init_____8py_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;sleep(0.01)
+<anchor xml:id="_info_2____init_____8py_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00178"/>00178 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;except&#32;KeyboardInterrupt:</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00179"/>00179 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;&#32;&#32;&#32;&#32;print(&quot;\nServer&#32;is&#32;shutting&#32;down...&quot;)</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00180"/>00180 &#32;&#32;&#32;&#32;<emphasis role="comment">#except&#32;Exception&#32;as&#32;e:</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00181"/>00181 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;&#32;&#32;&#32;print(f&quot;Server&#32;error:&#32;{e}&quot;)</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00182"/>00182 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">finally</emphasis>:
+<anchor xml:id="_info_2____init_____8py_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;server_socket.close()
+<anchor xml:id="_info_2____init_____8py_source_1l00184"/>00184 
+<anchor xml:id="_info_2____init_____8py_source_1l00185"/><link linkend="_namespaceinfo_1ac8c97f98088f4f709f77433d16180c9a">00185</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespaceinfo_1ac8c97f98088f4f709f77433d16180c9a">main</link>():
+<anchor xml:id="_info_2____init_____8py_source_1l00186"/>00186 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;&quot;&quot;主函数入口&quot;&quot;&quot;</emphasis>
+<anchor xml:id="_info_2____init_____8py_source_1l00187"/>00187 &#32;&#32;&#32;&#32;<emphasis role="keyword">import</emphasis>&#32;argparse
+<anchor xml:id="_info_2____init_____8py_source_1l00188"/>00188 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00189"/>00189 &#32;&#32;&#32;&#32;parser&#32;=&#32;argparse.ArgumentParser(description=<emphasis role="stringliteral">&apos;TCP&#32;Server&#32;Test&#32;Tool&apos;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00190"/>00190 &#32;&#32;&#32;&#32;parser.add_argument(<emphasis role="stringliteral">&apos;-p&apos;</emphasis>,&#32;<emphasis role="stringliteral">&apos;--port&apos;</emphasis>,&#32;type=int,&#32;default=PORT,&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;help=f<emphasis role="stringliteral">&apos;Port&#32;to&#32;listen&#32;on&#32;(default:&#32;&#32;{PORT})&apos;</emphasis>)
+<anchor xml:id="_info_2____init_____8py_source_1l00192"/>00192 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00193"/>00193 &#32;&#32;&#32;&#32;args&#32;=&#32;parser.parse_args()
+<anchor xml:id="_info_2____init_____8py_source_1l00194"/>00194 &#32;&#32;&#32;&#32;
+<anchor xml:id="_info_2____init_____8py_source_1l00195"/>00195 &#32;&#32;&#32;&#32;<link linkend="_namespaceinfo_1acc97091842bdb977661bd4a0e85bc4cc">start_server</link>(args.port)
+</programlisting></section>

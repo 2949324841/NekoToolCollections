@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_9dc56c024580bc9e8a656c8f1e5673c3" xml:lang="en-US">
+<title>Net/NetInfoTest/src Directory Reference</title>
+<indexterm><primary>Net/NetInfoTest/src Directory Reference</primary></indexterm>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_0d5f68ae3da5ebe41d7b266cb1c86d99">info</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_ea17862110b9f780fd80610a217ecdb9">netinfotest</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_96178f09344917b776b39df6c23de0d7">port</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_9dc56c024580bc9e8a656c8f1e5673c3" kind="dir">
+    <compoundname>Net/NetInfoTest/src</compoundname>
+    <innerdir refid="dir_0d5f68ae3da5ebe41d7b266cb1c86d99">Net/NetInfoTest/src/info</innerdir>
+    <innerdir refid="dir_ea17862110b9f780fd80610a217ecdb9">Net/NetInfoTest/src/netinfotest</innerdir>
+    <innerdir refid="dir_96178f09344917b776b39df6c23de0d7">Net/NetInfoTest/src/port</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Net/NetInfoTest/src/"/>
+  </compounddef>
+</doxygen>
